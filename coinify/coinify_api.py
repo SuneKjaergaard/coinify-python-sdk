@@ -13,6 +13,9 @@ class CoinifyAPI:
 
     API_DEFAULT_BASE_URL = "https://api.coinify.com"
 
+    PLUGIN_NAME="Coinify python sdk"
+    PLUGIN_VERSION="1.0"
+
     def __init__(self, api_key=None, api_secret=None, api_base_url=None):
         """
         Create an instance of the CoinifyAPI class.
@@ -41,8 +44,7 @@ class CoinifyAPI:
 
         return self.call_api_authenticated('/v3/invoices', query_params=query_params)
 
-    def invoice_create(self, amount, currency, plugin_name, plugin_version,
-                       description=None, custom=None, callback_url=None, callback_email=None,
+    def invoice_create(self, amount, currency, description=None, custom=None, callback_url=None, callback_email=None,
                        return_url=None, cancel_url=None, input_currency=None, input_return_address=None):
 
         """
@@ -53,8 +55,8 @@ class CoinifyAPI:
         params = {
             'amount': amount,
             'currency': currency,
-            'plugin_name': plugin_name,
-            'plugin_version': plugin_version
+            'plugin_name': self.PLUGIN_NAME,
+            'plugin_version': self.PLUGIN_VERSION
         }
 
         if description is not None:
